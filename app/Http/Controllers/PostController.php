@@ -27,7 +27,18 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => 'required|min:1|max:245',
+    //         'content' => 'required|min:1',
+    //     ]);
+
+    //     Post::create($validated);
+
+    //     return redirect()->route('posts.index');
+    // }
+        public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|min:1|max:245',
@@ -36,8 +47,9 @@ class PostController extends Controller
 
         Post::create($validated);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Post has been created successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -58,7 +70,18 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    // public function update(Request $request, Post $post)
+    // {
+    //     $validated = $request->validate([
+    //         'title' => 'required|min:1|max:245',
+    //         'content' => 'required|min:1',
+    //     ]);
+
+    //     $post->update($validated);
+
+    //     return redirect()->route('posts.index');
+    // }
+        public function update(Request $request, Post $post)
     {
         $validated = $request->validate([
             'title' => 'required|min:1|max:245',
@@ -67,15 +90,20 @@ class PostController extends Controller
 
         $post->update($validated);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Post has been updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    // public function destroy(Post $post)
+    // {
+    //     $post->delete();
+    //     return redirect()->route('posts.index');
+    // }    
+        public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index');
-    }    
+        return redirect()->route('posts.index')->with('success', 'Post has been deleted successfully!');
+    }
 }

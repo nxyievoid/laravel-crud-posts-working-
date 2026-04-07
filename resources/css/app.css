@@ -1,3 +1,121 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* public/styles.css */
+
+/* --- Body & Fonts --- */
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2c2c34, #3b2c41);
+    color: #ffffff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Headers --- */
+h1, h2, h3, h4, h5 {
+    color: #f2d5ff; /* neon pastel headers */
+    text-shadow: 0 0 5px #ff6ec7, 0 0 10px #6ef0ff;
+}
+
+/* --- Pastel Goth Boxes --- */
+.pastel-goth-box {
+    background: #3b2c41;
+    border: 2px solid #d9a1ff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 10px rgba(217, 161, 255, 0.5);
+}
+
+/* --- Buttons --- */
+.pastel-goth-button {
+    background: linear-gradient(135deg, #ff6ec7, #6ef0ff);
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.875rem;
+    transition: 0.3s;
+    box-shadow: 0 0 5px #ff6ec7, 0 0 10px #6ef0ff;
+    text-decoration: none;
+}
+
+.pastel-goth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px #ff6ec7, 0 0 20px #6ef0ff;
+}
+
+/* Delete Button Variation */
+.delete-button {
+    background: linear-gradient(135deg, #ff6e6e, #ff9ec7);
+}
+
+.delete-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px #ff6e6e, 0 0 15px #ff9ec7;
+}
+
+/* --- Inputs & Textareas --- */
+input, textarea {
+    background: #2c2c34;
+    border: 2px solid #d9a1ff;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 100%;
+    resize: vertical;
+}
+
+label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* --- Flash Messages --- */
+.flash-success {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6ef0ff, #ff6ec7);
+    color: #1a1a1a;
+    box-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
+}
+
+/* --- Footer --- */
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    color: #b0b0b0;
+}
+
+/* --- Misc --- */
+.flex {
+    display: flex;
+}
+.gap-2 {
+    gap: 0.5rem;
+}
+.inline {
+    display: inline-block;
+}
+.mb-4 {
+    margin-bottom: 1rem;
+}
+.mb-6 {
+    margin-bottom: 1.5rem;
+    /* Font-family gotiskais */
+body {
+    font-family: 'UnifrakturCook', cursive;
+    background: linear-gradient(135deg, #2c2c34, #3b2c41);
+    color: #ffffff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Headers ar gotisko fontu un neon glow */
+h1, h2, h3, h4, h5 {
+    font-family: 'UnifrakturCook', cursive;
+    color: #f2d5ff; /* neon pastel headers */
+    text-shadow: 0 0 5px #ff6ec7, 0 0 10px #6ef0ff;
+}
+}
