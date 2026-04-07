@@ -1,7 +1,7 @@
 <x-app-layout>
     <h1>Create post</h1>
 
-    <form action="/posts" method="post">
+    <form action="{{ route('posts.index') }}" method="post">
         @csrf
         <label for="title">Title: </label>
         <input type="text" id="title" name="title">
