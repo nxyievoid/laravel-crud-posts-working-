@@ -1,18 +1,19 @@
 <x-app-layout>
-    <h1>All posts</h1>
-    <a href="/posts/create">Create post</a>
+    <h1>All Posts</h1>
+    <a href="{{ route('posts.create') }}">Create New Post</a>
     <ul>
         @foreach($posts as $post)
             <li>
                 <h2>Title: {{ $post->title }}</h2>
                 <p>Content: {{ $post->content }}</p>
                 <div>
-                    <a href="{{ route('posts.show', ['id' => $post->id]) }}">Show</a>
-                    <a href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a>
-                    <form action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="post">
+                    <a href="{{ route('posts.show', $post) }}">Show</a>
+                    <a href="{{ route('posts.edit', $post) }}">Edit</a>
+                    <br>
+                    <form action="{{ route('posts.destroy', $post) }}" method="POST" style="display:inline;">
                         @csrf
-                        @method('delete')
-                        <input type="submit" value="Delete">
+                        @method('DELETE')
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this post?')">
                     </form>
                 </div>
             </li>

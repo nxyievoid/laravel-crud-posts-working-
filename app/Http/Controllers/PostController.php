@@ -30,7 +30,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|min:1',
+            'title' => 'required|min:1|max:245',
             'content' => 'required|min:1',
         ]);
 
@@ -42,45 +42,40 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
         return view('posts.show', ['post' => $post]);
     }
     
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
         return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::find($id);
+        $validated = $request->validate([
+            'title' => 'required|min:1|max:245',
+            'content' => 'required|min:1',
+        ]);
 
-        $data = [
-            'title' => $request->title,
-            'content' => $request->content
-        ];
+        $post->update($validated);
 
-        $post->update($data);
-
-        return redirect('/posts');
+        return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
         $post->delete();
-        return redirect('/posts');
+        return redirect()->route('posts.index');
     }    
 }
