@@ -21,6 +21,18 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/colours', function () {
+    return ('Colours:
+        red
+        <br>
+        orange
+        <br>
+        yellow
+        <br>
+
+        '
+        );
+});
 // Route::get('/contact/create', function () {
 //     return view('contact.create');
 // });

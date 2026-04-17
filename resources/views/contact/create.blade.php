@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+      {{-- Flash message --}}
+    @if(session('success'))
+        <div class="mb-4 p-4 rounded pastel-goth-box" style="background: linear-gradient(135deg, #6ef0ff, #ff6ec7); color: #1a1a1a;">
+            {{ session('success') }}
+        </div>
+    @endif
       <!-- <div class="flex justify-between items-center mb-6">
         <a href="{{ route('posts.index') }}" class="pastel-goth-button">Go back</a>
     </div>  -->
