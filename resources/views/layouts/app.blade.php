@@ -79,6 +79,13 @@
         <h1 class="text-5xl font-bold" style="color:#d9a1ff;">My Posts page</h1>
     </header>
 
+    <nav>
+        <a href="{{ route('posts.index') }}" class="pastel-goth-button">All posts</a>
+        <a href="/about" class="pastel-goth-button">About the creator</a>
+        <a href="{{ route('posts.create') }}" class="pastel-goth-button">Create Post</a>
+        <a href="{{ route('contact.create') }}" class="pastel-goth-button">Contact us</a>
+    </nav>
+
     <main class="w-full max-w-4xl">
         {{ $slot }}
     </main>

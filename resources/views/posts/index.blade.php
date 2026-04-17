@@ -30,7 +30,6 @@
 
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl" style="color:#f2d5ff;">All Posts</h1>
-        <a href="{{ route('posts.create') }}" class="pastel-goth-button">Create Post</a>
     </div>
 
     @foreach($posts as $post)
