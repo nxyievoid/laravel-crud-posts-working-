@@ -45,6 +45,10 @@ Route::get('/colours', function () {
 // Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/display-car', function () {
     $myCar = Car::create('Nissan', 'Skyline R34', 1999);
+    $myCar = Car::create('BMW', 'F80 M5', 2019);
+    $myCar = Car::create('Koenigsegg', 'Jesko Attack', 2024);
+    $myCar = Car::create('Buggati', 'Bolide', 2023);
+    $myCar = Car::create('Pagani', 'Zonda R', 2012);
 
     // Mēs "ietinam" auto datus Blade komponentā
     return Blade::render('
