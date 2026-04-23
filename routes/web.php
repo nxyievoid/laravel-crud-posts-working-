@@ -24,25 +24,36 @@ Route::get('/about', function () {
     return view('about');
 });
 Route::get('/colours', function () {
-    return ('Colours:
-        red
-        <br>
-        orange
-        <br>
-        yellow
-        <br>
-
-        '
-        );
+    return Blade::render('
+        <x-app-layout>
+            <div class="p-10 font-bold text-lg">
+                <h1 class="mb-4 text-2xl">Colours:</h1>
+                <span class="text-red-500">red</span><br>
+                <span class="text-orange-500">orange</span><br>
+                <span class="text-yellow-500">yellow</span><br>
+                <span class="text-blue-500">blue</span><br>
+                <span class="text-purple-500">purple</span><br>
+                <span class="text-pink-500">pink</span><br>
+                <span class="text-green-500">green</span>
+                </div>
+        </x-app-layout>
+    ');
 });
 // Route::get('/contact/create', function () {
 //     return view('contact.create');
 // });
 // Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/display-car', function () {
-    // Izmantojam statisko 'create' metodi
     $myCar = Car::create('Nissan', 'Skyline R34', 1999);
 
-    // Servējam datus ar echo
-    echo $myCar->display();
+    // Mēs "ietinam" auto datus Blade komponentā
+    return Blade::render('
+        <x-app-layout>
+            <div class="py-12">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    {!! $carHtml !!}
+                </div>
+            </div>
+        </x-app-layout>
+    ', ['carHtml' => $myCar->display()]);
 });
