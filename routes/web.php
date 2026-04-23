@@ -43,21 +43,51 @@ Route::get('/colours', function () {
 //     return view('contact.create');
 // });
 // Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/display-car', function () {
-    $myCar = Car::create('Nissan', 'Skyline R34', 1999);
-    $myCar = Car::create('BMW', 'F80 M5', 2019);
-    $myCar = Car::create('Koenigsegg', 'Jesko Attack', 2024);
-    $myCar = Car::create('Buggati', 'Bolide', 2023);
-    $myCar = Car::create('Pagani', 'Zonda R', 2012);
+// Route::get('/display-car', function () {
+//     $myCar = Car::create('Nissan', 'Skyline R34', 1999);
+//     $myCar1 = Car::create('BMW', 'F80 M5', 2019);
+//     $myCar2 = Car::create('Koenigsegg', 'Jesko Attack', 2024);
+//     $myCar3 = Car::create('Buggati', 'Bolide', 2023);
+//     $myCar4 = Car::create('Pagani', 'Zonda R', 2012);
 
-    // Mēs "ietinam" auto datus Blade komponentā
+//     // Mēs "ietinam" auto datus Blade komponentā
+//     return Blade::render('
+//         <x-app-layout>
+//             <div class="py-12">
+//                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+//                     {!! $carHtml !!}
+//                 </div>
+//             </div>
+//         </x-app-layout>
+//     ', ['carHtml' => $myCar->display()]);
+// });
+Route::get('/display-car', function () {
+    // 1. Izveidojam auto kolekciju (masīvu)
+    $cars = [
+        App\Models\Car::create('Nissan', 'Skyline R34', 1999),
+        App\Models\Car::create('BMW', 'F80 M5', 2019),
+        App\Models\Car::create('Koenigsegg', 'Jesko Attack', 2024),
+        App\Models\Car::create('Buggati', 'Bolide', 2023),
+        App\Models\Car::create('Pagani', 'Zonda R', 2012),
+    ];
+
+    // 2. Apvienojam visu auto HTML vienā mainīgajā
+    $allCarsHtml = '';
+    foreach ($cars as $car) {
+        $allCarsHtml .= $car->display();
+    }
+
+    // 3. Nododam apvienoto HTML uz Blade
     return Blade::render('
         <x-app-layout>
             <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    {!! $carHtml !!}
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
+                    <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Dream Car Collection 🏎️</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {!! $carHtml !!}
+                    </div>
                 </div>
             </div>
         </x-app-layout>
-    ', ['carHtml' => $myCar->display()]);
+    ', ['carHtml' => $allCarsHtml]);
 });
