@@ -10,6 +10,11 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content'];
+    // Pievienojam 'status' pie atļautajiem laukiem
+    protected $fillable = ['title', 'content', 'status'];
 
+    /**
+     * Ja nākotnē postam būs komentāri vai cita saistīta informācija, 
+     * šeit varat definēt attiecības.
+     */
 }

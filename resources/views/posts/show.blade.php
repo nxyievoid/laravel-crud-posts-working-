@@ -32,6 +32,43 @@
                     Delete
                 </button>
             </form>
+        <!-- Status -->
+            <!-- <form action="{{ route('posts.status', $post) }}" method="POST" class="inline">
+                @csrf
+                @method('patch') -->
+
+                <!-- <select name="status">
+                    <option value="draft">Draft</option>
+                    <option value="publish">Publish</option>
+                </select> -->
+                <!-- <select name="status">
+                    <option value="draft" {{ $post->status == 'draft' ? 'selected' : '' }}>Draft</option>
+                    <option value="publish" {{ $post->status == 'publish' ? 'selected' : '' }}>Publish</option>
+                </select>
+
+                <button type="submit" class="pastel-goth-button  text-sm px-3 py-1">
+                    Status
+                </button>
+            </form> -->
+                <form action="{{ route('posts.status', $post) }}" method="POST" class="inline">
+                @csrf
+                @method('PATCH')
+
+                <select name="status" class="border rounded px-2 py-1">
+                    <option value="draft" {{ old('status', $post->status) == 'draft' ? 'selected' : '' }}>Draft</option>
+                    <option value="publish" {{ old('status', $post->status) == 'publish' ? 'selected' : '' }}>Publish</option>
+                    <!-- <option value="archived" {{ old('status', $post->status) == 'archived' ? 'selected' : '' }}>Archived</option> -->
+                </select>
+
+                <button type="submit" class="pastel-goth-button text-sm px-3 py-1">
+                    Update Status
+                </button>
+            </form>
+
+            {{-- Pievienojam kļūdu paziņojumu, lai redzētu, ja validācija neizdodas --}}
+            @error('status')
+                <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+            @enderror
         </div>
     </div>
 </x-app-layout>

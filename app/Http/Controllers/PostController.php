@@ -101,9 +101,47 @@ class PostController extends Controller
     //     $post->delete();
     //     return redirect()->route('posts.index');
     // }    
-        public function destroy(Post $post)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post has been deleted successfully! :c');
     }
+    
+    // public function status(Request $request, Post $post)
+    // {
+    //     // return $request;
+    //     $post->status = "draft";
+    //     $post->save();
+
+    //     return redirect()->route('posts.show', $post->id)->with('success', 'Post has been published successfully! :3');
+    // }
+    //     public function status(Request $request, Post $post)
+    // {
+    //     $validated = $request->validate([
+    //         'status' => 'required|in:draft,publish',
+    //     ]);
+
+    //     $post->status = $request->status;
+    //     $post->save();
+
+    //     $message = $post->status === 'publish' ? 'published' : 'saved as draft';
+
+    //     return redirect()->route('posts.show', $post->id)
+    //                     ->with('success', "Post has been {$message} successfully! :3");
+    // }
+    public function status(Request $request, Post $post)
+{
+    // 1. Validācija - ja dati nebūs draft, publish vai archived, 
+    // Laravel automātiski pārtrauks izpildi un metīs kļūdu.
+    $request->validate([
+        'status' => 'required|string|in:draft,publish,archived',
+    ]);
+
+    // 2. Saglabāšana
+    $post->update([
+        'status' => $request->status
+    ]);
+
+    return redirect()->back()->with('success', 'Status updated to ' . $request->status . '<3');
+}
 }
