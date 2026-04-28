@@ -17,12 +17,17 @@ Route::put('/posts/{post}/update', [PostController::class, 'update'])->name('pos
 Route::delete('/posts/{post}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
 Route::patch('/posts/{post}/status', [PostController::class, 'status'])->name('posts.status');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/posts/{post}/duplicate', [PostController::class, 'duplicate'])->name('posts.duplicate');
+
+
 Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
 Route::get('/about', function () {
     return view('about');
 });
+
 Route::get('/colours', function () {
     return Blade::render('
         <x-app-layout>
@@ -39,30 +44,8 @@ Route::get('/colours', function () {
         </x-app-layout>
     ');
 });
-// Route::get('/contact/create', function () {
-//     return view('contact.create');
-// });
-// Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-// Route::get('/display-car', function () {
-//     $myCar = Car::create('Nissan', 'Skyline R34', 1999);
-//     $myCar1 = Car::create('BMW', 'F80 M5', 2019);
-//     $myCar2 = Car::create('Koenigsegg', 'Jesko Attack', 2024);
-//     $myCar3 = Car::create('Buggati', 'Bolide', 2023);
-//     $myCar4 = Car::create('Pagani', 'Zonda R', 2012);
 
-//     // Mēs "ietinam" auto datus Blade komponentā
-//     return Blade::render('
-//         <x-app-layout>
-//             <div class="py-12">
-//                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-//                     {!! $carHtml !!}
-//                 </div>
-//             </div>
-//         </x-app-layout>
-//     ', ['carHtml' => $myCar->display()]);
-// });
 Route::get('/display-car', function () {
-    // 1. Izveidojam auto kolekciju (masīvu)
     $cars = [
         App\Models\Car::create('Nissan', 'Skyline R34', 1999),
         App\Models\Car::create('BMW', 'F80 M5', 2019),
@@ -70,14 +53,10 @@ Route::get('/display-car', function () {
         App\Models\Car::create('Buggati', 'Bolide', 2023),
         App\Models\Car::create('Pagani', 'Zonda R', 2012),
     ];
-
-    // 2. Apvienojam visu auto HTML vienā mainīgajā
     $allCarsHtml = '';
     foreach ($cars as $car) {
         $allCarsHtml .= $car->display();
     }
-
-    // 3. Nododam apvienoto HTML uz Blade
     return Blade::render('
         <x-app-layout>
             <div class="py-12">

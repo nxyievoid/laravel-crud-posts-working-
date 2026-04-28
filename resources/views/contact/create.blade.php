@@ -13,9 +13,6 @@
             {{ session('success') }}
         </div>
     @endif
-      <!-- <div class="flex justify-between items-center mb-6">
-        <a href="{{ route('posts.index') }}" class="pastel-goth-button">Go back</a>
-    </div>  -->
         <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl" style="color:#f2d5ff;">Contact us! :></h1>
     </div>

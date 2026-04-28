@@ -10,9 +10,9 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl" style="color:#f2d5ff;">About creator</h1>
     </div>      
-    Hey my name is nxyie, there isn't much about me.
+    Hey my name is nxyie, there isn't much about me. I am a femboy also.
     <br>
-    (more info will be added later)
+    (more info will be added later hopefulyy :3)
 </body>
 </html>
 </x-app-layout>
