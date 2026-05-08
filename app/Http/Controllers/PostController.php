@@ -82,14 +82,18 @@ class PostController extends Controller
     // copying/duplicate
     public function duplicate(Post $post)
     {
-        $dupPost = $request->validate([
-            'title' => 'Copy of' . $this->title,
-            'content' => $this->content,
+        // $dupPost = $request->validate([
+        //     'title' => 'Copy of' . $post->title,
+        //     'content' => $post->content,
+        // ]);
+
+        $copyPost = Post::create([
+            'title' => 'Copy of ' . $post->title,
+            'content' => $post->content,
         ]);
-        $post->update([
-            'duplicate' => $request->duplicate
-        ]);
-        return redirect()->route('posts.show')->with('success', 'Post has been duplicate successfully! <3');
+
+        // $post->update();
+        return redirect()->route('posts.show', $copyPost)->with('success', 'Post has been duplicate successfully! <3');
     }
 
 }
