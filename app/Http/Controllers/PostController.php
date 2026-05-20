@@ -11,7 +11,14 @@ class PostController extends Controller
     // index
     public function index()
     {
-        $posts = Post::all();
+        $query = Post::query();
+
+        if(request('filter') === 'deleted') {
+            $query->whereNotNull('deleted_at');
+        } else {
+            $query->whereNull('deleted_at');
+        }
+        $posts = $query->get();
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -62,7 +69,12 @@ class PostController extends Controller
     // destroy
     public function destroy(Post $post)
     {
-        $post->delete();
+        $post->deleted_at = \Carbon\Carbon::now();
+        $post->save();
+        // $post->update([
+        //     'deleted_at' => $request->deleted_at
+        // ]);
+
         return redirect()->route('posts.index')->with('success', 'Post has been deleted successfully! :c');
     }
 
@@ -94,6 +106,10 @@ class PostController extends Controller
 
         // $post->update();
         return redirect()->route('posts.show', $copyPost)->with('success', 'Post has been duplicate successfully! <3');
+    }
+    public function restore()
+    {
+        
     }
 
 }

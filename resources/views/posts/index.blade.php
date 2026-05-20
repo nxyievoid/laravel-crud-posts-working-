@@ -28,4 +28,5 @@
             </div>
         </div>
     @endforeach
+    <a method="GET" href="/posts?filter=deleted">Deleted Posts</a>
 </x-app-layout>
